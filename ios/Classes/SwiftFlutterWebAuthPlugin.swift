@@ -45,6 +45,8 @@ public class SwiftFlutterWebAuthPlugin: NSObject, FlutterPlugin {
                 let session = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackURLScheme, completionHandler: completionHandler)
 
                 if #available(iOS 13, *) {
+                    session.prefersEphemeralWebBrowserSession = true
+    
                     guard let provider = UIApplication.shared.delegate?.window??.rootViewController as? FlutterViewController else {
                         result(FlutterError(code: "FAILED", message: "Failed to aquire root FlutterViewController" , details: nil))
                         return
